@@ -65,7 +65,7 @@ char * chercherLigneIdClient(int i , char * path, int* err  ){
 
     } 
     FILE *fichierCsv = fopen(path, "r");
-    *err = 0 ;s'il n'y a pas une erreur d'ouverture alors err va prendre la valeur 1
+    *err = 0 ;//s'il n'y a pas une erreur d'ouverture alors err va prendre la valeur 1
     for(boucle = 0;boucle<line;++boucle){
         
 
