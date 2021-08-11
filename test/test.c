@@ -131,6 +131,34 @@ int main()
 
 
     }
+         // test des fonctions pour menu
+    {
+
+        int err2   , err1 ;
+        char * ligne1 = chercherLigneIdMenu(5 , "dataBase/tableItemsMenus.csv" , &err2);        
+        TEST(strcmp(ligne1,  "5,salade nicoise,oeuf;thon;olive;huile,10\n" )==0);// voir si on a bien recupérer la ligne qu'on veut
+        char * ligne2 = chercherLigneIdMenu(6 , "dataBase/tableItemsMenus.csv" , &err1);        
+        TEST(strcmp(ligne2,  "6,pancakes aux myrtilles,farine;lait;oeuf;myrtille,8\n" )==0);// voir si on a bien recupérer la ligne qu'on veut
+        TEST( err1 == 0 );// voir si le fichier s'est ouvert correctement
+        TEST( err2 == 0);// voir si le fichier s'est ouvert correctement
+        pmenu menuTest = (pmenu)malloc(sizeof(menu));
+        menuTest = ajoutMenuConstructeur( "5", "salade nicoise" , "oeuf;thon;olive;huile" , "10" );
+  
+        TEST(0== strcmp(menuTest->id , "5") );
+        TEST( 0==strcmp(menuTest->nom , "salade nicoise"));
+        TEST( 0==strcmp(menuTest->prix , "10") );
+        TEST( 0==strcmp(menuTest->ingredients , "oeuf;thon;olive;huile" ));
+        err1=3;
+
+        ajoutMenu(menuTest , &err1 , "fichierQuiNexistePas.csv");
+        TEST( err1 == 1 );  // voir si le fichier s'est ouvert correctement      
+        err1=3;
+        ajoutMenu(menuTest , &err1 , "dataBase/testDataBase/emptyFileMenu.csv");
+        TEST_FILE( "dataBase/testDataBase/testEmptyFileMenu.csv" , "dataBase/testDataBase/testEmptyFileMenu.csv"  );// voir si on a bien écrit la chose qu'on a voulu 
+        TEST(err1 ==0 ) ;// voir si le fichier s'est ouvert correctement
+
+
+    }
   
         
         
