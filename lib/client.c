@@ -31,7 +31,7 @@ void  ajoutClient(pclient client , int * err , char * path  ){
 
 
     if( access( path, F_OK ) == 0 ) { // regarder si le fichier exist avec la fonction access de <unistd.h> car le parametre a ou a+ crée toujours le fichier s'il n'existe pas 
-        *err = 0; // s'il n'y a pas une erreur d'ouverture alors err va prendre la valeur 1
+        *err = 0; // s'il n'y a pas une erreur d'ouverture alors err va prendre la valeur 0
         tableClient = fopen(path, "a+" );
         fprintf(tableClient, "%s%s%s%s%s%s%s%s%s%s", client->id, "," , client->nom, "," ,client->codePostal, "," , client->telephone,"," , client->solde , "\n");
         fclose(tableClient);
