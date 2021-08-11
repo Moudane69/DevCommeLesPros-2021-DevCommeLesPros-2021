@@ -20,7 +20,7 @@
 
 
 // Valeurs pour le harnais de test spécifiques à ce programme.
-int const tests_total = 50;
+int const tests_total = 51;
 int const test_column_width = 80;
 
 int main()
