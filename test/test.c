@@ -20,7 +20,7 @@
 
 
 // Valeurs pour le harnais de test spécifiques à ce programme.
-int const tests_total = 75;
+int const tests_total = 78;
 int const test_column_width = 80;
 
 int main()
@@ -213,6 +213,10 @@ int main()
         TEST(supprimerCompte(1,2) == 1) ;
         TEST(supprimerCompte(2,2) == 1) ;
         TEST(supprimerCompte(3,2) == 1) ;
+        // supprimer client
+        TEST(supprimerCompte(1,3) == 1) ;
+        TEST(supprimerCompte(2,3) == 1) ;
+        TEST(supprimerCompte(3,3) == 1) ;
     }
     return tests_executed - tests_successful;
 }
