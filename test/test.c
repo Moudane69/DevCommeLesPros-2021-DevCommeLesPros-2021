@@ -20,7 +20,7 @@
 
 
 // Valeurs pour le harnais de test spécifiques à ce programme.
-int const tests_total = 51;
+int const tests_total = 57;
 int const test_column_width = 80;
 
 int main()
@@ -159,9 +159,24 @@ int main()
 
 
     }
-  
+
+    // TEST connexion
+    {
+        int *id_type ;
+        // connexion restaurant
+        id_type = connexion("0413131313") ;
+        TEST(id_type[0] == 1) ;
+        TEST(id_type[1] == 1) ;
         
+        id_type = connexion("0410111213") ;
+        TEST(id_type[0] == 2) ;
+        TEST(id_type[1] == 1) ;
         
+        id_type = connexion("0422334455") ;
+        TEST(id_type[0] == 3) ;
+        TEST(id_type[1] == 1) ;
+
+    }
 
     return tests_executed - tests_successful;
 }
