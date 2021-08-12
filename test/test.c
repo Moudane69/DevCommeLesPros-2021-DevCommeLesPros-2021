@@ -20,7 +20,7 @@
 
 
 // Valeurs pour le harnais de test spécifiques à ce programme.
-int const tests_total = 51;
+int const tests_total = 81;
 int const test_column_width = 80;
 
 int main()
@@ -159,10 +159,69 @@ int main()
 
 
     }
-  
-        
-        
 
+    // TEST connexion
+    {
+        int *id_type ;
+        // connexion restaurant
+        id_type = connexion("0413131313") ;
+        TEST(id_type[0] == 1) ;
+        TEST(id_type[1] == 1) ;
+        
+        id_type = connexion("0410111213") ;
+        TEST(id_type[0] == 2) ;
+        TEST(id_type[1] == 1) ;
+        
+        id_type = connexion("0422334455") ;
+        TEST(id_type[0] == 3) ;
+        TEST(id_type[1] == 1) ;
+
+        // connexion livreur
+        id_type = connexion("0600000000") ;
+        TEST(id_type[0] == 1) ;
+        TEST(id_type[1] == 2) ;
+        
+        id_type = connexion("0601020304") ;
+        TEST(id_type[0] == 2) ;
+        TEST(id_type[1] == 2) ;
+        
+        id_type = connexion("0611223344") ;
+        TEST(id_type[0] == 3) ;
+        TEST(id_type[1] == 2) ;
+
+        // connexion client
+        id_type = connexion("0410203040") ;
+        TEST(id_type[0] == 1) ;
+        TEST(id_type[1] == 3) ;
+
+        id_type = connexion("0690919293") ;
+        TEST(id_type[0] == 2) ;
+        TEST(id_type[1] == 3) ;
+
+        id_type = connexion("0699887766") ;
+        TEST(id_type[0] == 3) ;
+        TEST(id_type[1] == 3) ;
+    }
+
+    // TEST Supprimer compte
+    {   
+        // supprimer restaurant
+        TEST(supprimerCompte(1,1) == 1) ;
+        TEST(supprimerCompte(2,1) == 1) ;
+        TEST(supprimerCompte(3,1) == 1) ;
+        // supprimer livreur
+        TEST(supprimerCompte(1,2) == 1) ;
+        TEST(supprimerCompte(2,2) == 1) ;
+        TEST(supprimerCompte(3,2) == 1) ;
+        // supprimer client
+        TEST(supprimerCompte(1,3) == 1) ;
+        TEST(supprimerCompte(2,3) == 1) ;
+        TEST(supprimerCompte(3,3) == 1) ;
+        // type n'existe pas
+        TEST(supprimerCompte(1,4) == 0) ;
+        TEST(supprimerCompte(2,4) == 0) ;
+        TEST(supprimerCompte(3,4) == 0) ;
+    }
     return tests_executed - tests_successful;
 }
 
