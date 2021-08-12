@@ -11,7 +11,7 @@ int main()
     {
         printf("[1].Pour vous connecté\n[2].Pour créer un compte\n[q].Pour quitter\n");
         scanf("%c", &choix_1);
-        viderBuffer();
+        // viderBuffer();
         switch (choix_1)
         {
 
@@ -39,8 +39,8 @@ int main()
                 // else if(id_type[1] == 3){
                 //     choix_2 = '3' ;
                 // }
-                // switch (choix_2)
-                // {
+                switch (choix_2)
+                {
                 case '1':
                     // system("clear");
                     printf("Vous etes restaurateur\n");
