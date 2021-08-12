@@ -26,12 +26,15 @@ build/restaurateur.o: lib/restaurateur.c lib/restaurateur.h | build
 build/livreur.o: lib/livreur.c lib/livreur.h | build
 	gcc -c lib/livreur.c  -o build/livreur.o 
 
+build/fonctionCommune.o: lib/fonctionCommune.c lib/fonctionCommune.h | build
+	gcc -c lib/fonctionCommune.c  -o build/fonctionCommune.o 
+
 build/menu.o: lib/menu.c lib/menu.h | build
 	gcc -c lib/menu.c  -o build/menu.o 
 
 
-build/libluminyEat.a: lib/luminyEat.h build/client.o build/livreur.o build/restaurateur.o build/menu.o  | build
-	ar crs build/libluminyEat.a build/client.o build/livreur.o build/restaurateur.o build/menu.o
+build/libluminyEat.a: lib/luminyEat.h build/fonctionCommune.o build/client.o build/livreur.o build/restaurateur.o build/menu.o  | build
+	ar crs build/libluminyEat.a build/client.o build/livreur.o build/restaurateur.o build/fonctionCommune.o build/menu.o
 
 
 
@@ -49,7 +52,7 @@ build/test: build/test.o build/libluminyEat.a  | build
 
 # Lance le programme de test.
 check: build/test  remove | build
-	./build/test
+	valgrind ./build/test
 
 
 # main: build/main.o build/client.o build/restaurateur.o  build/livreur.o build/menu.o | build
