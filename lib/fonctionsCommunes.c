@@ -89,7 +89,11 @@ char* getfield_2(char* line, int num)
 }
 
 int supprimerCompte(int id, int type){
+    // La fonction se base sur la recherche de la ligne de l'utilisateur par type
+    // Elle copie le fichier sans la ligne en question dans un nouveau fichier temporaire
+    // Elle supprime le fichier et renome le nouveau fichier temporaire
     FILE* fichierLecture ;
+    // Switch permet de designe quel fichier utiliser al 'aide du type
     switch(type){
         case 1:
                 fichierLecture = fopen("dataBase/tableRestaurants.csv", "r") ;
