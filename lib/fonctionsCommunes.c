@@ -74,3 +74,128 @@ int* connexion(char* telephone)
     // Si le numero du telephone n'existe pas on retourn {0, 0}
     return id_type ;
 }
+
+char* getfield_2(char* line, int num)
+{
+    char* tok;
+    for (tok = strtok(line, ",");
+            tok && *tok;
+            tok = strtok(NULL, ","))
+    {
+        if (!--num)
+            return tok;
+    }
+    return NULL;
+}
+
+int supprimerCompte(int id, int type){
+    FILE* fichierLecture ;
+    switch(type){
+        case 1:
+                fichierLecture = fopen("dataBase/tableRestaurants.csv", "r") ;
+                if(fichierLecture != NULL){
+                    char line[1024];
+                    char* idfichierLecture ;
+                    while (fgets(line, 1024, fichierLecture)){
+                        char copieLigne[1024] ;
+                        strcpy(copieLigne ,line) ;
+                        // printf("%s",line) ;
+                        idfichierLecture = getfield_2(line, 1) ;
+                        if(atoi(idfichierLecture) != id){
+                            // int tailleLigne = strlen(line) ;
+                            FILE* fichierEcriture ;
+                            fichierEcriture = fopen("dataBase/tablerestaurants_2.csv", "a") ;
+                            fputs(copieLigne, fichierEcriture) ;
+                            fclose(fichierEcriture) ;
+                        }
+                        // Pour laisser la ligne vide
+                        // else{
+                        //     FILE* fichierEcriture ;
+                        //     fichierEcriture = fopen("dataBase/tablerestaurants_2.csv", "a") ;
+                        //     fputs("\n", fichierEcriture) ;
+                        //     fclose(fichierEcriture) ;
+                        // }
+                    }
+                    fclose(fichierLecture) ;
+                    remove("dataBase/tableRestaurants.csv");
+                    //rename the file replica.c to original name
+                    rename("dataBase/tablerestaurants_2.csv", "dataBase/tableRestaurants.csv");
+                    return 1 ;
+                }
+                else{
+                    return -1 ;
+                }
+            break;
+        case 2:
+                fichierLecture = fopen("dataBase/tableLivreurs.csv", "r") ;
+                if(fichierLecture != NULL){
+                    char line[1024];
+                    char* idfichierLecture ;
+                    while (fgets(line, 1024, fichierLecture)){
+                        char copieLigne[1024] ;
+                        strcpy(copieLigne ,line) ;
+                        // printf("%s",line) ;
+                        idfichierLecture = getfield_2(line, 1) ;
+                        if(atoi(idfichierLecture) != id){
+                            // int tailleLigne = strlen(line) ;
+                            FILE* fichierEcriture ;
+                            fichierEcriture = fopen("dataBase/tablelivreur_2.csv", "a") ;
+                            fputs(copieLigne, fichierEcriture) ;
+                            fclose(fichierEcriture) ;
+                        }
+                        // Pour laisser la ligne vide
+                        // else{
+                        //     FILE* fichierEcriture ;
+                        //     fichierEcriture = fopen("dataBase/tablerestaurants_2.csv", "a") ;
+                        //     fputs("\n", fichierEcriture) ;
+                        //     fclose(fichierEcriture) ;
+                        // }
+                    }
+                    fclose(fichierLecture) ;
+                    remove("dataBase/tableLivreurs.csv");
+                    //rename the file replica.c to original name
+                    rename("dataBase/tablelivreur_2.csv", "dataBase/tableLivreurs.csv");
+                    return 1 ;
+                }
+                else{
+                    return -1 ;
+                }
+            break;
+        case 3:
+                fichierLecture = fopen("dataBase/tableClient.csv", "r") ;
+                if(fichierLecture != NULL){
+                    char line[1024];
+                    char* idfichierLecture ;
+                    while (fgets(line, 1024, fichierLecture)){
+                        char copieLigne[1024] ;
+                        strcpy(copieLigne ,line) ;
+                        // printf("%s",line) ;
+                        idfichierLecture = getfield_2(line, 1) ;
+                        if(atoi(idfichierLecture) != id){
+                            // int tailleLigne = strlen(line) ;
+                            FILE* fichierEcriture ;
+                            fichierEcriture = fopen("dataBase/tableClient_2.csv", "a") ;
+                            fputs(copieLigne, fichierEcriture) ;
+                            fclose(fichierEcriture) ;
+                        }
+                        // Pour laisser la ligne vide
+                        // else{
+                        //     FILE* fichierEcriture ;
+                        //     fichierEcriture = fopen("dataBase/tablerestaurants_2.csv", "a") ;
+                        //     fputs("\n", fichierEcriture) ;
+                        //     fclose(fichierEcriture) ;
+                        // }
+                    }
+                    fclose(fichierLecture) ;
+                    remove("dataBase/tableClient.csv");
+                    //rename the file replica.c to original name
+                    rename("dataBase/tableClient_2.csv", "dataBase/tableClient.csv");
+                    return 1 ;
+                }
+                else{
+                    return -1 ;
+                }
+            break;
+    }
+    return 0 ;
+}
