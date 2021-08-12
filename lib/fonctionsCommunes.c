@@ -203,3 +203,32 @@ int supprimerCompte(int id, int type){
     }
     return 0 ;
 }
+
+int ajoutHistorique(int id, int type , char* manipulation){
+    FILE *stream ;
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    char* choix ;
+    if(type == 1){
+        choix = malloc(sizeof(char)*12) ;
+        strcpy(choix, "restaurateur") ;
+    }
+    else if(type == 2){
+        choix = malloc(sizeof(char)*7) ;
+        strcpy(choix, "livreur") ;
+    }
+    else if(type == 3){
+        choix = malloc(sizeof(char)*6) ;
+        strcpy(choix, "client") ;
+    }
+    stream = fopen("historique.txt", "a") ;
+    if(stream != NULL){
+        fprintf(stream, "DATE: %d-%02d-%02d %02d:%02d:%02d par le %s d'id %d: %s\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec, choix, id, manipulation) ;
+        fclose(stream) ;
+        return 1; 
+    }
+    else{
+        // printf("Erreur d'ouverture du fichier historique\n");
+        return 0 ;
+    }
+}
