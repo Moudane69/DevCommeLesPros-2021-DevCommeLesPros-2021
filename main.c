@@ -149,6 +149,31 @@ int main(){
         /* Pour créer un compte */
         /************************/
         case '2':
+            do{
+                // To Delete
+                printf("[1].Pour restaurateur \n[2].Pour livreur \n[3].Pour client \n[q].Pour quitter \n[p].Pour precedent\n");
+                scanf("%c", &choix_2);
+                viderBuffer();
+                // int id = 0 ;
+                switch(choix_2){
+                    case '1':
+                        // TODO: fonction qui permet de demander les champs de la structure restaurateur et les mettre dans le fichier restaurant.csv
+                        // id = genererId("./db/restaurant.csv") ;
+                        // printf("Votre Id: %d\n", id) ;
+                        printf("Vous avez creer un compte pour un restaurateur\n");
+                        break;
+                    case '2':
+                        // TODO: fonction qui permet de demander les champs de la structure restaurateur et les mettre dans le fichier livreur.csv
+                        printf("Vous avez creer un compte pour un livreur\n");
+                        break;
+                    case '3':
+                        // TODO: fonction qui permet de demander les champs de la structure restaurateur et les mettre dans le fichier client.csv
+                        printf("Vous avez creer un compte pour un client\n");
+                        break;
+                    case 'q':
+                        return 0;
+                }
+            }while(choix_2 != 'p');
             break;
         }
     }while (choix_1 != 'q');
