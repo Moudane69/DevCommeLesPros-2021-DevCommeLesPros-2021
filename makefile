@@ -52,7 +52,7 @@ build/test: build/test.o build/libluminyEat.a  | build
 
 # Lance le programme de test.
 check: build/test  remove | build
-	valgrind ./build/test
+	./build/test
 
 
 # main: build/main.o build/client.o build/restaurateur.o  build/livreur.o build/menu.o | build
