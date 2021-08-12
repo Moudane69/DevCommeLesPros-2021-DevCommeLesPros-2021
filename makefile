@@ -26,12 +26,15 @@ build/restaurateur.o: lib/restaurateur.c lib/restaurateur.h | build
 build/livreur.o: lib/livreur.c lib/livreur.h | build
 	gcc -c lib/livreur.c  -o build/livreur.o 
 
+build/fonctionsCommunes.o: lib/fonctionsCommunes.c lib/fonctionsCommunes.h | build
+	gcc -c lib/fonctionsCommunes.c  -o build/fonctionsCommunes.o 
+
 build/menu.o: lib/menu.c lib/menu.h | build
 	gcc -c lib/menu.c  -o build/menu.o 
 
 
-build/libluminyEat.a: lib/luminyEat.h build/client.o build/livreur.o build/restaurateur.o build/menu.o  | build
-	ar crs build/libluminyEat.a build/client.o build/livreur.o build/restaurateur.o build/menu.o
+build/libluminyEat.a: lib/luminyEat.h build/fonctionsCommunes.o build/client.o build/livreur.o build/restaurateur.o build/menu.o  | build
+	ar crs build/libluminyEat.a build/client.o build/livreur.o build/restaurateur.o build/fonctionsCommunes.o build/menu.o
 
 
 

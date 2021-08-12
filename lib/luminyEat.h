@@ -6,7 +6,7 @@
 #include "menu.h"
 #include "restaurateur.h"
 #include "client.h"
-
+#include "fonctionsCommunes.h"
 
 
 
