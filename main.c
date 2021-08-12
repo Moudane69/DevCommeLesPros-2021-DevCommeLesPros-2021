@@ -47,6 +47,28 @@ int main(){
                     }while(choix_3 != 'p');
                     break;
                 case '2':
+                    printf("Vous etes livreur\n");
+                    do{
+                        printf("[1].Pour supprimer \n[2].Pour modifier votre profile \n[3].Pour solde \n[q].Pour quitter \n[p].Pour precedent\n");
+                        switch (choix_3){
+                            case '1':
+                                // TODO: fonction qui prend comme argument l'id et supprime la ligne de l'id
+                                printf("Vous avez supprimer votre compte\n");
+                                return 0;
+                            case '2':
+                                // TODO: fonction qui prend comme argument l'id et permet de modifier la ligne dans le fichier livreur.csv
+                                printf("Vous avez modifier votre profile\n");
+                                break;
+                            case '3':
+                                // TODO: fonction qui prend comme argument l'id du livreur et qui retourne son solde
+                                printf("Votre solde\n");
+                                break;
+                            case 'q':
+                                return 0;
+                        }
+                    }while(choix_3 != 'p');
+                    break;
+
         /************************/
         /* Pour créer un compte */
         /************************/
