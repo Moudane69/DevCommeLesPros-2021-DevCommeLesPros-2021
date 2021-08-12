@@ -1,36 +1,59 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "lib/luminyEat.h"
 
-int main(){
-    char choix_1 ;
-    char choix_2 ;
-    printf("Bienvenue dans le menu principale de LuminyEats Application\n") ;
+int main()
+{
+    char choix_1;
+    char choix_2;
+    char choix_3;
+    char choix_4;
+    printf("Bienvenue dans le menu pricipale de LuminyEats\n") ;
     do
     {
         printf("[1].Pour vous connecté\n[2].Pour créer un compte\n[q].Pour quitter\n");
-        scanf("%c", &choix_1) ;
-        // viderBuffer() ;
+        scanf("%c", &choix_1);
+        viderBuffer();
         switch (choix_1)
         {
 
         /***********************/
         /* Pour vous connecter */
         /***********************/
+
         case '1':
             do
             {
                 // TODO: connexion: prend comme argument le numero de telephone et return id et type
-                // printf("Pour vous connecter, entrez votre numero de telephone: ");
-
-                // Choix entre differents type d'utilisateur
-                switch(choix_2){
+                // type permet de faire le choix dans la switch suivante, id permet d'identifier la ligne dans le fichier CSV
+                printf("Pour vous connecter, entrez votre numero de telephone: ");
+                // char *numeroTelephone ;
+                // numeroTelephone = malloc(sizeof(char)*10) ;
+                // scanf("%s" , numeroTelephone) ;
+                // int* id_type = connexion(numeroTelephone) ;
+                // viderBuffer();
+                // if(id_type[1] == 1){
+                //     choix_2 = '1' ;
+                // }
+                // else if(id_type[1] == 2){
+                //     choix_2 = '2' ;
+                // }
+                // else if(id_type[1] == 3){
+                //     choix_2 = '3' ;
+                // }
+                // switch (choix_2)
+                // {
                 case '1':
+                    // system("clear");
                     printf("Vous etes restaurateur\n");
+                    // ajoutHistorique(id_type[0], id_type[1] , "Connexion") ;
                     do{
                         printf("[1].Pour supprimer \n[2].Pour item \n[3].Pour solde \n[q].Pour quitter \n[p].Pour precedent\n");
+                        // scanf("%c", &choix_3);
+                        // viderBuffer();
                         switch (choix_3){
                             case 49:
                                 // TODO: fonction qui prend comme argument l'id et supprime la ligne de l'id
+                                // supprimerCompte(id_type[0], id_type[1]) ;
+                                // ajoutHistorique(id_type[0], id_type[1] , "SupprimerCompte") ;
                                 printf("Vous avez supprimer votre compte\n");
                                 return 0;
                             case 50:
@@ -47,12 +70,18 @@ int main(){
                     }while(choix_3 != 'p');
                     break;
                 case '2':
+                    // system("clear");
                     printf("Vous etes livreur\n");
+                    // ajoutHistorique(id_type[0], id_type[1] , "Connexion") ;
                     do{
                         printf("[1].Pour supprimer \n[2].Pour modifier votre profile \n[3].Pour solde \n[q].Pour quitter \n[p].Pour precedent\n");
+                        // scanf("%c", &choix_3);
+                        // viderBuffer();
                         switch (choix_3){
                             case '1':
                                 // TODO: fonction qui prend comme argument l'id et supprime la ligne de l'id
+                                // supprimerCompte(id_type[0], id_type[1]) ;
+                                // ajoutHistorique(id_type[0], id_type[1] , "SupprimerCompte") ;
                                 printf("Vous avez supprimer votre compte\n");
                                 return 0;
                             case '2':
@@ -69,12 +98,18 @@ int main(){
                     }while(choix_3 != 'p');
                     break;
                 case '3':
+                    // system("clear");
                     printf("Vous etes client\n");
+                    // ajoutHistorique(id_type[0], id_type[1] , "Connexion") ;
                     do{
                         printf("[1].Pour supprimer \n[2].Pour modifier votre profile \n[3].Pour solde \n[4].Pour voir la liste des restaurants \n[5].Pour faire une commande \n[q].Pour quitter \n[p].Pour precedent\n");
+                        // scanf("%c", &choix_3);
+                        // viderBuffer();
                         switch (choix_3){
                             case '1':
                                 // TODO: fonction qui prend comme argument l'id et supprime la ligne de l'id
+                                // supprimerCompte(id_type[0], id_type[1]) ;
+                                // ajoutHistorique(id_type[0], id_type[1] , "SupprimerCompte") ;
                                 printf("Vous avez supprimer votre compte\n");
                                 return 0;
                             case '2':
@@ -88,6 +123,8 @@ int main(){
                             case '4':
                                 do{
                                     printf("[1].Pour voir qui peut me livrer \n[2].Pour voir les restaurants selon le type \n[3].Pour les deux \n[q].Pour quitter \n[p].Pour precedent\n");
+                                    // scanf("%c", &choix_4);
+                                    // viderBuffer();
                                     switch(choix_4){
                                         case '1':
                                             // TODO: fonction qui prend comme argument l'id de l'utilisateur et affiche les restaurants qui ont le meme code postal
@@ -109,8 +146,10 @@ int main(){
                             case '5':
                                 do{
                                     printf("[1].Pour voir la liste des items(pas compris le but)\n[2].Pour ajouter un item \n[3].Pour enlever un item \n[4].Pour passer la commande \n[q].Pour quitter \n[p].Pour precedent\n");
+                                    // scanf("%c", &choix_4);
+                                    // viderBuffer();
                                     switch(choix_4){
-                                        // case '1': Pas compris a revoir
+                                        // case '1': Pas compris a voir
                                         case '2':
                                             // liste ListeItems; // On peut faire un structure qui enregistre le nom de l'item et son prix donc liste des structs
                                             // TODO: fonction qui retourn une liste avec les items
@@ -145,10 +184,10 @@ int main(){
                 }
             } while (choix_2 != 112);
             break;
+        case '2':
         /************************/
         /* Pour créer un compte */
         /************************/
-        case '2':
             do{
                 // To Delete
                 printf("[1].Pour restaurateur \n[2].Pour livreur \n[3].Pour client \n[q].Pour quitter \n[p].Pour precedent\n");
