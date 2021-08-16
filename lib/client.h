@@ -24,7 +24,8 @@ typedef struct client{
 void ajoutClient(pclient client , int * err, char * path );
 pclient ajoutClientConstructeur(char * id , char * codePostal , char* telephone , char * solde ,char * nom);
 char * chercherLigneIdClient(int i, char * path , int* err);
-
+int afficherSoldeClient(int id) ;
+int modifierSoldeClient(int id, int modification) ;
 
 
 

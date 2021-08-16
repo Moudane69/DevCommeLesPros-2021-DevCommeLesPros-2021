@@ -25,7 +25,8 @@ void ajoutRestaurateur(prestaurateur restaurateur , int * err, char * path );
 
 prestaurateur ajoutRestaurateurConstructeur(char * id , char * nom , char* codepostal , char * telephone , char * type , char * menu , char * solde );
 char * chercherLigneIdRestaurateur(int i, char * path , int* err);
-
+int afficherSoldeRestaurant(int id) ;
+int modifierSoldeRestaurant(int id, int modification) ;
 
 
 
