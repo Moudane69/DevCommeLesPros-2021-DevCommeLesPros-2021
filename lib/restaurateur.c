@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include "fonctionsCommunes.h"
 
 
 prestaurateur ajoutRestaurateurConstructeur(char * id , char * nom , char* codePostal , char * telephone , char * type , char * menu , char * solde){
@@ -78,4 +79,32 @@ char * chercherLigneIdRestaurateur(int i , char * path, int* err  ){
     return ligne;
 
 
+}
+
+
+int afficherSoldeRestaurant(int id){
+    FILE *fichier;
+    int solde ;
+    char line[1024] ;
+    fichier = fopen("dataBase/tableRestaurants.csv", "r") ;
+    if(fichier != NULL){
+        while (fgets(line, 1024, fichier))
+        {
+            // On parcours l'ensemble des id de ligne
+            char* tmp_1 = strdup(line);
+            // Si on trouve l'id rechercher
+            // On crée le tableau avec le meme id (en int) et le type de l'utilisateur
+            // 1. Pour restaurateur
+            if(atoi(getfield_2(tmp_1, 1)) == id){
+                solde = atoi(getfield_2(line, 7)) ;
+                // Je peux return solde direct
+                printf("%d\n", solde);
+                return 1;
+            }
+        }
+        return 0;
+    }
+    else{
+        return -1 ;
+    }
 }
