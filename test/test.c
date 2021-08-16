@@ -20,7 +20,7 @@
 
 
 // Valeurs pour le harnais de test spécifiques à ce programme.
-int const tests_total = 81;
+int const tests_total = 105;
 int const test_column_width = 80;
 
 int main()
@@ -201,6 +201,46 @@ int main()
         id_type = connexion("0699887766") ;
         TEST(id_type[0] == 3) ;
         TEST(id_type[1] == 3) ;
+    }
+
+    // TEST afficher solde
+    {
+        // afficher solde restaurant
+        TEST(afficherSoldeClient(1) == 1) ;
+        TEST(afficherSoldeClient(2) == 1) ;
+        TEST(afficherSoldeClient(3) == 1) ;
+        TEST(afficherSoldeClient(4) == 0) ; // Pour un id client qui n'existe pas
+        // afficher solde livreur
+        TEST(afficherSoldeLivreur(1) == 1) ;
+        TEST(afficherSoldeLivreur(2) == 1) ;
+        TEST(afficherSoldeLivreur(3) == 1) ;
+        TEST(afficherSoldeLivreur(4) == 0) ; // Pour un id livreur qui n'existe pas
+        // afficher solde client
+        TEST(afficherSoldeRestaurant(1) == 1) ;
+        TEST(afficherSoldeRestaurant(2) == 1) ;
+        TEST(afficherSoldeRestaurant(3) == 1) ;
+        TEST(afficherSoldeRestaurant(4) == 0) ; // Pour un id restaurant qui n'existe pas
+
+    }
+
+    // TEST modifier solde
+    {
+        // modifier solde restaurant
+        TEST(modifierSoldeClient(1, 0) == 1) ;
+        TEST(modifierSoldeClient(2, 0) == 1) ;
+        TEST(modifierSoldeClient(3, 0) == 1) ;
+        TEST(modifierSoldeClient(4, 0) == 0) ; // Pour un id client qui n'existe pas
+        // modifier solde livreur
+        TEST(modifierSoldeLivreur(1, 0) == 1) ;
+        TEST(modifierSoldeLivreur(2, 0) == 1) ;
+        TEST(modifierSoldeLivreur(3, 0) == 1) ;
+        TEST(modifierSoldeLivreur(4, 0) == 0) ; // Pour un id livreur qui n'existe pas
+        // modifier solde client
+        TEST(modifierSoldeRestaurant(1, 0) == 1) ;
+        TEST(modifierSoldeRestaurant(2, 0) == 1) ;
+        TEST(modifierSoldeRestaurant(3, 0) == 1) ;
+        TEST(modifierSoldeRestaurant(4, 0) == 0) ; // Pour un id restaurant qui n'existe pas
+
     }
 
     // TEST Supprimer compte
