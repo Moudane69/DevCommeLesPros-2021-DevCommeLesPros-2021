@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include "fonctionsCommunes.h"
 
 
 pclient ajoutClientConstructeur(char * id , char * codePostal , char* telephone , char * solde ,char * nom){
@@ -80,4 +81,31 @@ char * chercherLigneIdClient(int i , char * path, int* err  ){
 
 }
 
+
+int afficherSoldeClient(int id){
+    FILE *fichier;
+    int solde ;
+    char line[1024] ;
+    fichier = fopen("./db/client.csv", "r") ;
+    if(fichier != NULL){
+        while (fgets(line, 1024, fichier))
+        {
+            // On parcours l'ensemble des id de ligne
+            char* tmp_1 = strdup(line);
+            // Si on trouve l'id rechercher
+            // On crée le tableau avec le meme id (en int) et le type de l'utilisateur
+            // 1. Pour restaurateur
+            if(atoi(getfield_2(tmp_1, 1)) == id){
+                solde = atoi(getfield_2(line, 5)) ;
+                printf("%d\n", solde);
+                // Je peux return solde direct
+                return 1;
+            }
+        }
+        return 0;
+    }
+    else{
+        return -1 ;
+    }
+}
 
