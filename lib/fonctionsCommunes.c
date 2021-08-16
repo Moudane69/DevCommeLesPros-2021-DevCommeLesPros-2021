@@ -1,5 +1,12 @@
 #include "fonctionsCommunes.h"
 
+void viderBuffer()
+{
+    int c ;
+    while ((c = getchar()) != '\n' && c != EOF)
+    {}
+}
+
 // Pour plus d'information
 // https://stackoverflow.com/questions/60686644/issue-when-using-pointer-to-line-tokens-in-c
 const char* getfield(char* line, int num)
