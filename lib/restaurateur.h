@@ -27,7 +27,8 @@ prestaurateur ajoutRestaurateurConstructeur(char * id , char * nom , char* codep
 char * chercherLigneIdRestaurateur(int i, char * path , int* err);
 int afficherSoldeRestaurant(int id) ;
 int modifierSoldeRestaurant(int id, int modification) ;
-int ajouterItem(int id, int item_id) ;
+int ajouterItem(int id, int item_id) ; // cette fonction permet d'ajouter un item d'id item_id pour le restaurateur connecté d'id id
+int supprimerItem(int id, int item_id) ; // cette fonction permet de supprimer un item d'id item_id pour le restaurateur connecté d'id id
 
 
 
