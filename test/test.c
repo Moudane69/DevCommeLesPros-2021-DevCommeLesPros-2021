@@ -244,7 +244,7 @@ int main()
     }
 
     {
-        // modifier solde restaurant
+        // modifier modifier solde restaurant
         TEST(ajouterItem(1, 0) == 1) ;
         TEST(supprimerItem(1, 0) == 1) ;
         TEST(ajouterItem(2, 0) == 1) ;
@@ -252,7 +252,6 @@ int main()
         TEST(ajouterItem(3, 0) == 1) ;
         TEST(supprimerItem(3, 0) == 1) ;
         TEST(ajouterItem(4, 0) == 0) ; // Pour un id restaurant qui n'existe pas
-        // TEST(modifierSoldeClient(4, 0) == 0) ; 
     }
 
     // TEST Supprimer compte
