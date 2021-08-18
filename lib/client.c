@@ -215,3 +215,33 @@ int afficherRestaurantCodePostal(int id_client){
         return -1 ;
     }
 }
+
+int afficherRestaurantType(char* typeClient){
+    FILE *fichierRestaurant ;
+    fichierRestaurant = fopen("dataBase/tableRestaurants.csv", "r") ;
+    if(fichierRestaurant != NULL){
+        char line_2[1024] ;
+        int indicateur = 0 ;
+        while(fgets(line_2, 1024, fichierRestaurant)){
+            // char* temp_3 = strdup(line_2) ;
+            char* temp_4 = strdup(line_2);
+            char* temp_5 = strdup(line_2);
+            char* typeRestaurant = getfield_2(temp_4, 5) ;
+            if(strcmp(typeRestaurant,typeClient) == 0){
+                printf("%s peut vous livrer\n", getfield_2(temp_5, 2)) ;
+                indicateur ++ ;
+            }
+        }
+        // Un restaurant de le meme code postal existe
+        if(indicateur > 0){
+            return 2 ;
+        }
+    }
+    else{
+        // Erreur d'ouverture du fichier fichierRestaurant
+        return -1 ;
+    }
+    // Aucun restaurant peut livrer
+    printf("Aucun restaurant correspond a votre type de recherche \n");
+    return 0 ;
+}

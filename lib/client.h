@@ -27,6 +27,7 @@ char * chercherLigneIdClient(int i, char * path , int* err);
 int afficherSoldeClient(int id) ;
 int modifierSoldeClient(int id, int modification) ;
 int afficherRestaurantCodePostal(int id_client) ;
+int afficherRestaurantType(char* typeClient) ;
 
 
 
