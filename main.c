@@ -263,7 +263,22 @@ int main()
                         printf("Vous avez creer un compte pour un livreur\n");
                         break;
                     case '3':
-                        // TODO: fonction qui permet de demander les champs de la structure restaurateur et les mettre dans le fichier client.csv
+                        sprintf(id , "%d" , nombreDeLigne("dataBase/tableClient.csv"));
+                        printf("rentrer votre nom :\n");
+                        scanf("%s", &nom);
+                        viderBuffer();
+                        printf("rentrer votre code postal :\n");
+                        scanf("%s", &codePostal);
+                        viderBuffer();
+                        printf("rentrer votre telephone :\n");
+                        scanf("%s", &telephone);
+                        viderBuffer();
+                        printf("rentrer votre solde en EURO :\n");
+                        scanf("%s", &solde);
+                        viderBuffer();
+                     
+                        ajoutClient(ajoutClientConstructeur( id  , codePostal, telephone , solde  , nom  ), &l , "dataBase/tableClient.csv");
+
                         printf("Vous avez creer un compte pour un client\n");
                         break;
                     case 'q':
