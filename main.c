@@ -212,12 +212,37 @@ int main()
                 printf("[1].Pour restaurateur \n[2].Pour livreur \n[3].Pour client \n[q].Pour quitter \n[p].Pour precedent\n");
                 scanf("%c", &choix_2);
                 viderBuffer();
-                // int id = 0 ;
+                        char  nom[30] ;
+                        char  codePostal[13];
+                        char   telephone[16]; 
+                        char  solde[13];
+                        char  menu[30];
+                        char  type[20] ; 
+                        int l ;
+                        char  id[13] ;
+                        char ingredients[40];
+                        char deplacements[40];
+                        char restaurant[30];
                 switch(choix_2){
                     case '1':
-                        // TODO: fonction qui permet de demander les champs de la structure restaurateur et les mettre dans le fichier restaurant.csv
-                        // id = genererId("./db/restaurant.csv") ;
-                        // printf("Votre Id: %d\n", id) ;
+                        // itoa(nombreDeLigne("dataBase/tableRestaurants.csv"),id,10);
+                        sprintf(id , "%d" , nombreDeLigne("dataBase/tableRestaurants.csv"));
+                        printf("rentrer votre nom :\n");
+                        scanf("%s", &nom);
+                        viderBuffer();
+                        printf("rentrer votre code postal :\n");
+                        scanf("%s", &codePostal);
+                        viderBuffer();
+                        printf("rentrer votre telephone :\n");
+                        scanf("%s", &telephone);
+                        viderBuffer();
+                        printf("rentrer votre menu ( au moins 1 ) :\n");
+                        scanf("%s", &menu);
+                        viderBuffer();
+                        printf("rentrer votre type :\n");
+                        scanf("%s", &type);
+                        viderBuffer();
+                        ajoutRestaurateur(ajoutRestaurateurConstructeur( id , nom , codePostal , telephone , type , menu , "0" ), &l , "dataBase/tableRestaurants.csv");
                         printf("Vous avez creer un compte pour un restaurateur\n");
                         break;
                     case '2':
