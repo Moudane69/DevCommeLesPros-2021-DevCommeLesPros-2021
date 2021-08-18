@@ -265,3 +265,19 @@ char *remove_white_spaces(char *str)
 	str[j] = '\0';
 	return str;
 }
+
+
+
+int generateId(char * path){
+
+
+    FILE * fichier = fopen(path , "r") ;
+    int c;
+    int nLignes = 0;
+    while((c=fgetc(fichier)) != EOF)
+    {
+        if(c=='\n')
+            nLignes++;
+    }
+    return nLignes;
+}
