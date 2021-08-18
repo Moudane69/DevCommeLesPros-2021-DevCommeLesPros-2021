@@ -168,3 +168,64 @@ int modifierSoldeRestaurant(int id, int modification){
         return -1 ;
     }
 }
+
+int ajouterItem(int id, int item_id){
+
+    FILE * fichier;
+    char line[1024] ;
+    int indicateur ;
+    indicateur = 0 ;
+    char *menu ;
+    fichier = fopen("dataBase/tableRestaurants.csv", "r") ;
+
+    if(fichier != NULL){
+
+        while (fgets(line, 1024, fichier) && indicateur == 0)
+        {
+            // On parcours l'ensemble des id de ligne
+            char* tmp_1 = strdup(line);
+            // Si on trouve l'id rechercher
+            if(atoi(getfield_2(tmp_1, 1)) == id){
+                fclose(fichier) ;
+                FILE * fichier_temp ;
+                char ligneCopie[1024] ;
+                fichier = fopen("dataBase/tableRestaurants.csv", "r") ;
+                fichier_temp = fopen("dataBase/restaurant_temp.csv", "a") ;
+                while (fgets(ligneCopie, 1024, fichier)){
+                    tmp_1 = strdup(ligneCopie) ;
+                    char* tmp_2 = strdup(ligneCopie) ;
+                    char* tmp_3 = strdup(ligneCopie) ;
+                    char* tmp_4 = strdup(ligneCopie) ;
+                    char* tmp_5 = strdup(ligneCopie) ;
+                    char* tmp_6 = strdup(ligneCopie) ;
+                    char* tmp_7 = strdup(ligneCopie) ;
+                    char* tmp_8 = strdup(ligneCopie) ;
+                    char* id_restaurant = getfield_2(tmp_2, 1) ;
+                    char* nom_restaurant = getfield_2(tmp_3, 2) ;
+                    char* code_postal_restaurant = getfield_2(tmp_4, 3) ;
+                    char* telephone_restaurant = getfield_2(tmp_5, 4) ;
+                    char* type_restaurant = getfield_2(tmp_6, 5) ;
+                    char* menu_restaurant = getfield_2(tmp_7, 6) ;
+                    int solde = atoi(getfield_2(tmp_8, 7)) ;
+                    if(atoi(getfield_2(tmp_1, 1)) != id){
+                        fputs(ligneCopie, fichier_temp) ;
+                    }
+                    else{
+                        fprintf(fichier_temp, "%s,%s,%s,%s,%s,%s;%d,%d\n", id_restaurant, nom_restaurant, code_postal_restaurant, telephone_restaurant, type_restaurant, menu_restaurant, item_id, solde) ;
+                    }
+                }
+                fclose(fichier) ;
+                fclose(fichier_temp) ;
+                remove("dataBase/tableRestaurants.csv");
+                //rename the file replica.c to original name
+                rename("dataBase/restaurant_temp.csv", "dataBase/tableRestaurants.csv");
+                indicateur = 1 ;
+                return 1 ;
+            }
+        }
+        return 0 ;
+    }
+    else{
+        return -1 ;
+    }
+}

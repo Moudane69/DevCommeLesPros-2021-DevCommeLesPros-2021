@@ -27,7 +27,7 @@ prestaurateur ajoutRestaurateurConstructeur(char * id , char * nom , char* codep
 char * chercherLigneIdRestaurateur(int i, char * path , int* err);
 int afficherSoldeRestaurant(int id) ;
 int modifierSoldeRestaurant(int id, int modification) ;
-
+int ajouterItem(int id, int item_id) ;
 
 
 
