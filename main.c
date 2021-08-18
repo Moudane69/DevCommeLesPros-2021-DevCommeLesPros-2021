@@ -242,7 +242,7 @@ int main()
                         printf("rentrer votre type :\n");
                         scanf("%s", &type);
                         viderBuffer();
-                        ajoutRestaurateur(ajoutRestaurateurConstructeur( id , nom , codePostal , telephone , type , menu , "0" ), &l , "dataBase/tableRestaurants.csv");
+                        ajoutRestaurateur(ajoutRestaurateurConstructeur( id , nom , codePostal , telephone , type , menu , "0" ), &l , "dataBase/tableRestaurants.csv");// solde = 0 au début 
                         printf("Vous avez creer un compte pour un restaurateur\n");
                         break;
                     case '2':
@@ -259,7 +259,7 @@ int main()
                         printf("rentrer votre restaurant :\n");
                         scanf("%s", &restaurant);
                         viderBuffer();
-                        ajoutLivreur(ajoutLivreurConstructeur( id , nom  , telephone , deplacements , restaurant , "0" ), &l , "dataBase/tableLivreurs.csv");
+                        ajoutLivreur(ajoutLivreurConstructeur( id , nom  , telephone , deplacements , restaurant , "0" ), &l , "dataBase/tableLivreurs.csv");// solde = 0 au début 
                         printf("Vous avez creer un compte pour un livreur\n");
                         break;
                     case '3':
