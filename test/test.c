@@ -20,7 +20,7 @@
 
 
 // Valeurs pour le harnais de test spécifiques à ce programme.
-int const tests_total = 105;
+int const tests_total = 112;
 int const test_column_width = 80;
 
 int main()
@@ -241,6 +241,17 @@ int main()
         TEST(modifierSoldeRestaurant(3, 0) == 1) ;
         TEST(modifierSoldeRestaurant(4, 0) == 0) ; // Pour un id restaurant qui n'existe pas
 
+    }
+
+    {
+        // modifier modifier solde restaurant
+        TEST(ajouterItem(1, 0) == 1) ;
+        TEST(supprimerItem(1, 0) == 1) ;
+        TEST(ajouterItem(2, 0) == 1) ;
+        TEST(supprimerItem(2, 0) == 1) ;
+        TEST(ajouterItem(3, 0) == 1) ;
+        TEST(supprimerItem(3, 0) == 1) ;
+        TEST(ajouterItem(4, 0) == 0) ; // Pour un id restaurant qui n'existe pas
     }
 
     // TEST Supprimer compte

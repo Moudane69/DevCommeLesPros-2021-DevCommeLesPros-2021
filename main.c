@@ -6,6 +6,8 @@ int main()
     char choix_2;
     char choix_3;
     char choix_4;
+    char choix_5;
+    int id_item;
     printf("Bienvenue dans le menu pricipale de LuminyEats\n") ;
     do
     {
@@ -22,7 +24,6 @@ int main()
         case '1':
             do
             {
-                // TODO: connexion: prend comme argument le numero de telephone et return id et type
                 // type permet de faire le choix dans la switch suivante, id permet d'identifier la ligne dans le fichier CSV
                 printf("Pour vous connecter, entrez votre numero de telephone: ");
                 char *numeroTelephone ;
@@ -51,21 +52,35 @@ int main()
                         viderBuffer();
                         switch (choix_3){
                             case 49:
-                                // TODO: fonction qui prend comme argument l'id et supprime la ligne de l'id
                                 supprimerCompte(id_type[0], id_type[1]) ;
                                 ajoutHistorique(id_type[0], id_type[1] , "SupprimerCompte") ;
                                 printf("Vous avez supprimer votre compte\n");
                                 return 0;
                             case 50:
-                                // TODO: fonction qui prend comme argument l'id de l'item et permet de le modifier
-                                printf("Vous avez ajouter un item\n");
+                                printf("[1].Pour ajouter un item dans votre menu\n[2].Pour supprimer un item deja existant\n");
+                                scanf("%c", &choix_5) ;
+                                switch (choix_5){
+                                    case '1':
+                                        printf("Entrez l'id du item que vous voulez ajouter: \n") ;
+                                        scanf("%d", &id_item) ;
+                                        ajouterItem(id_type[0], id_item) ;
+                                        viderBuffer();
+                                        printf("Vous avez ajouter un item\n");
+                                        break;
+                                    case '2':
+                                        printf("Entrez l'id du item que vous voulez supprimer (Attention il faut au moins un item qui reste dans votre menu): \n") ;
+                                        scanf("%d", &id_item) ;
+                                        supprimerItem(id_type[0], id_item) ;
+                                        viderBuffer();
+                                        printf("Vous avez supprimer un item\n");
+                                        break;
+                                }
                                 break;
                             case 51:
-                                // TODO: fonction qui prend comme argument l'id du restaurateur et qui retourne son solde
                                 afficherSoldeRestaurant(id_type[0]) ;
                                 printf("Votre solde\n");
                                 break;
-                            case 113:
+                            case 'q':
                                 return 0;
                         }
                     }while(choix_3 != 'p');
@@ -80,7 +95,6 @@ int main()
                         viderBuffer();
                         switch (choix_3){
                             case '1':
-                                // TODO: fonction qui prend comme argument l'id et supprime la ligne de l'id
                                 supprimerCompte(id_type[0], id_type[1]) ;
                                 ajoutHistorique(id_type[0], id_type[1] , "SupprimerCompte") ;
                                 printf("Vous avez supprimer votre compte\n");
@@ -90,7 +104,6 @@ int main()
                                 printf("Vous avez modifier votre profile\n");
                                 break;
                             case '3':
-                                // TODO: fonction qui prend comme argument l'id du livreur et qui retourne son solde
                                 afficherSoldeLivreur(id_type[0]) ;
                                 printf("Votre solde\n");
                                 break;
@@ -109,7 +122,6 @@ int main()
                         viderBuffer();
                         switch (choix_3){
                             case '1':
-                                // TODO: fonction qui prend comme argument l'id et supprime la ligne de l'id
                                 supprimerCompte(id_type[0], id_type[1]) ;
                                 ajoutHistorique(id_type[0], id_type[1] , "SupprimerCompte") ;
                                 printf("Vous avez supprimer votre compte\n");
@@ -119,9 +131,9 @@ int main()
                                 printf("Vous avez modifier votre profile\n");
                                 break;
                             case '3':
-                                // TODO: fonction qui prend comme argument l'id du livreur et qui retourne son solde
-                                afficherSoldeClient(id_type[0]) ;
                                 printf("Votre solde\n");
+                                afficherSoldeClient(id_type[0]) ;
+                                printf("\n") ;
                                 break;
                             case '4':
                                 do{
