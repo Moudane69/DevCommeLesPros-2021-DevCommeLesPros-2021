@@ -12,3 +12,4 @@ int supprimerCompte(int id, int type); // Fonction qui permet de supprimer le co
 int ajoutHistorique(int id, int type , char* manipulation); // Fonction qui créer un fichier historique (si inexistant) et qui trace l'ensemble des manipulations faites par les utilisateurs
 char *strremove(char *str, char *sub) ; // fonction intermediaire
 char *remove_white_spaces(char *str) ; // fonction intermediaire
+int generateId(char* path); // fonction qui génere le prochiane Id dans chaque table 

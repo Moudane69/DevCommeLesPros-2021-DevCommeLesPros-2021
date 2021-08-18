@@ -1,4 +1,8 @@
 #include "lib/luminyEat.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 
 int main()
 {
@@ -213,20 +217,73 @@ int main()
                 printf("[1].Pour restaurateur \n[2].Pour livreur \n[3].Pour client \n[q].Pour quitter \n[p].Pour precedent\n");
                 scanf("%c", &choix_2);
                 viderBuffer();
-                // int id = 0 ;
+                        char  nom[30] ;
+                        char  codePostal[13];
+                        char   telephone[16]; 
+                        char  solde[13];
+                        char  menu[30];
+                        char  type[20] ; 
+                        int l ;
+                        char  id[13] ;
+                        char ingredients[40];
+                        char deplacements[40];
+                        char restaurant[30];
                 switch(choix_2){
                     case '1':
-                        // TODO: fonction qui permet de demander les champs de la structure restaurateur et les mettre dans le fichier restaurant.csv
-                        // id = genererId("./db/restaurant.csv") ;
-                        // printf("Votre Id: %d\n", id) ;
+                        // itoa(nombreDeLigne("dataBase/tableRestaurants.csv"),id,10);
+                        sprintf(id , "%d" , nombreDeLigne("dataBase/tableRestaurants.csv"));
+                        printf("rentrer votre nom :\n");
+                        scanf("%s", &nom);
+                        viderBuffer();
+                        printf("rentrer votre code postal :\n");
+                        scanf("%s", &codePostal);
+                        viderBuffer();
+                        printf("rentrer votre telephone :\n");
+                        scanf("%s", &telephone);
+                        viderBuffer();
+                        printf("rentrer votre menu ( au moins 1 ) :\n");
+                        scanf("%s", &menu);
+                        viderBuffer();
+                        printf("rentrer votre type :\n");
+                        scanf("%s", &type);
+                        viderBuffer();
+                        ajoutRestaurateur(ajoutRestaurateurConstructeur( id , nom , codePostal , telephone , type , menu , "0" ), &l , "dataBase/tableRestaurants.csv");// solde = 0 au début 
                         printf("Vous avez creer un compte pour un restaurateur\n");
                         break;
                     case '2':
-                        // TODO: fonction qui permet de demander les champs de la structure restaurateur et les mettre dans le fichier livreur.csv
+                        sprintf(id , "%d" , nombreDeLigne("dataBase/tableLivreurs.csv"));
+                        printf("rentrer votre nom :\n");
+                        scanf("%s", &nom);
+                        viderBuffer();
+                        printf("rentrer les deplacements possibles :\n");
+                        scanf("%s", &deplacements);
+                        viderBuffer();
+                        printf("rentrer votre telephone :\n");
+                        scanf("%s", &telephone);
+                        viderBuffer();
+                        printf("rentrer votre restaurant :\n");
+                        scanf("%s", &restaurant);
+                        viderBuffer();
+                        ajoutLivreur(ajoutLivreurConstructeur( id , nom  , telephone , deplacements , restaurant , "0" ), &l , "dataBase/tableLivreurs.csv");// solde = 0 au début 
                         printf("Vous avez creer un compte pour un livreur\n");
                         break;
                     case '3':
-                        // TODO: fonction qui permet de demander les champs de la structure restaurateur et les mettre dans le fichier client.csv
+                        sprintf(id , "%d" , nombreDeLigne("dataBase/tableClient.csv"));
+                        printf("rentrer votre nom :\n");
+                        scanf("%s", &nom);
+                        viderBuffer();
+                        printf("rentrer votre code postal :\n");
+                        scanf("%s", &codePostal);
+                        viderBuffer();
+                        printf("rentrer votre telephone :\n");
+                        scanf("%s", &telephone);
+                        viderBuffer();
+                        printf("rentrer votre solde en EURO :\n");
+                        scanf("%s", &solde);
+                        viderBuffer();
+                     
+                        ajoutClient(ajoutClientConstructeur( id  , codePostal, telephone , solde  , nom  ), &l , "dataBase/tableClient.csv");
+
                         printf("Vous avez creer un compte pour un client\n");
                         break;
                     case 'q':
