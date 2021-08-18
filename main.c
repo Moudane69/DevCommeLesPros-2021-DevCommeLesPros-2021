@@ -137,16 +137,14 @@ int main()
                                 break;
                             case '4':
                                 do{
-                                    printf("[1].Pour voir qui peut me livrer \n[2].Pour voir les restaurants selon le type \n[3].Pour les deux \n[q].Pour quitter \n[p].Pour precedent\n");
+                                    printf("[1].Pour voir qui peut me livrer dans mon secteur\n[2].Pour voir les restaurants selon le type \n[3].Pour les deux \n[q].Pour quitter \n[p].Pour precedent\n");
                                     scanf("%c", &choix_4);
                                     viderBuffer();
                                     switch(choix_4){
                                         case '1':
-                                            // TODO: fonction qui prend comme argument l'id de l'utilisateur et affiche les restaurants qui ont le meme code postal
-                                            printf("Les restaurants dans votre secteur sont:\n");
+                                            afficherRestaurantCodePostal(id_type[0]) ;
                                             break;
                                         case '2':
-                                            // TODO: fonction qui demande a l'utilisateur sont type de restaurant et affiche les restaurants avec ce type
                                             printf("Les restaurants avec votre type de restaurants\n");
                                             break;
                                         case '3':
