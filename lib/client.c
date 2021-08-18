@@ -245,3 +245,56 @@ int afficherRestaurantType(char* typeClient){
     printf("Aucun restaurant correspond a votre type de recherche \n");
     return 0 ;
 }
+
+int afficherRestaurantCodePostalType(int id_client, char *typeClient){
+
+    FILE *fichierClient ;
+    fichierClient = fopen("dataBase/tableClient.csv", "r") ;
+    if(fichierClient != NULL){
+        char line[1024] ;
+        while (fgets(line, 1024, fichierClient)){
+
+            char* temp_1 = strdup(line) ;
+            if(atoi(getfield_2(temp_1, 1)) == id_client){
+                char* temp_2 = strdup(line);
+                char* cpClient = getfield_2(temp_2, 3) ;
+                fclose(fichierClient) ;
+                FILE *fichierRestaurant ;
+                fichierRestaurant = fopen("dataBase/tableRestaurants.csv", "r") ;
+                if(fichierRestaurant != NULL){
+                    char line_2[1024] ;
+                    int indicateur = 0 ;
+                    while(fgets(line_2, 1024, fichierRestaurant)){
+                        // char* temp_3 = strdup(line_2) ;
+                        char* temp_4 = strdup(line_2);
+                        char* temp_5 = strdup(line_2);
+                        char* temp_6 = strdup(line_2);
+                        char* typeRestaurant = getfield_2(temp_6, 5) ;
+                        char* cpRestaurant = getfield_2(temp_4, 3) ;
+                        if((strcmp(cpRestaurant,cpClient) == 0) && (strcmp(typeClient, typeRestaurant) == 0)){
+                            printf("%s peut vous livrer\n", getfield_2(temp_5, 2)) ;
+                            indicateur ++ ;
+                        }
+                    }
+                    // Un restaurant de le meme code postal existe
+                    if(indicateur > 0){
+                        return 2 ;
+                    }
+                }
+                else{
+                    // Erreur d'ouverture du fichier fichierRestaurant
+                    return -2 ;
+                }
+                // Aucun restaurant peut livrer
+                printf("Aucun restaurant correspond a votre recherche\n");
+                return 1 ;
+            }
+        }
+        // L'idClient n'existe pas
+        return 0 ;
+    }
+    else{
+        // Erreur d'ouverture du fichier fichierClient
+        return -1 ;
+    }
+}
