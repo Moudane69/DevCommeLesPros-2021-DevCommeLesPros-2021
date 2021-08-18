@@ -146,14 +146,17 @@ int main()
                                             break;
                                         case '2':
                                             printf("Entrer le type qui vous interesse\n") ;
-                                            char typeClient[20] ;
-                                            scanf("%s" , typeClient) ;
-                                            afficherRestaurantType(typeClient) ;
+                                            char typeClient_1[20] ;
+                                            scanf("%s" , typeClient_1) ;
+                                            afficherRestaurantType(typeClient_1) ;
                                             viderBuffer();
                                             break;
                                         case '3':
-                                            // TODO: fonction qui demande a l'utilisateur sont type de restaurant et affiche les restaurants avec ce type dans son secteur
-                                            printf("Les restaurants combinés\n");
+                                            printf("Entrer le type qui vous interesse\n") ;
+                                            char typeClient_2[20] ;
+                                            scanf("%s" , typeClient_2) ;
+                                            afficherRestaurantCodePostalType(id_type[0], typeClient_2) ;
+                                            viderBuffer();
                                             break;
                                         case 'q':
                                             return 0;
