@@ -239,3 +239,29 @@ int ajoutHistorique(int id, int type , char* manipulation){
         return 0 ;
     }
 }
+
+// https://stackoverflow.com/questions/47116974/remove-a-substring-from-a-string-in-c
+char *strremove(char *str, char *sub) {
+    size_t len = strlen(sub);
+    if (len > 0) {
+        char *p = str;
+        while ((p = strstr(p, sub)) != NULL) {
+            memmove(p, p + len, strlen(p + len) + 1);
+        }
+    }
+    return str;
+}
+
+// Fonction qui permet de supprimer les espaces d'une chaine de caractere
+char *remove_white_spaces(char *str)
+{
+	int i = 0, j = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ')
+          str[j++] = str[i];
+		i++;
+	}
+	str[j] = '\0';
+	return str;
+}
