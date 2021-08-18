@@ -145,7 +145,11 @@ int main()
                                             afficherRestaurantCodePostal(id_type[0]) ;
                                             break;
                                         case '2':
-                                            printf("Les restaurants avec votre type de restaurants\n");
+                                            printf("Entrer le type qui vous interesse\n") ;
+                                            char typeClient[20] ;
+                                            scanf("%s" , typeClient) ;
+                                            afficherRestaurantType(typeClient) ;
+                                            viderBuffer();
                                             break;
                                         case '3':
                                             // TODO: fonction qui demande a l'utilisateur sont type de restaurant et affiche les restaurants avec ce type dans son secteur
