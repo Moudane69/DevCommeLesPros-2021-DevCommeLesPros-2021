@@ -20,7 +20,7 @@
 
 
 // Valeurs pour le harnais de test spécifiques à ce programme.
-int const tests_total = 112;
+int const tests_total = 136;
 int const test_column_width = 80;
 
 int main()
@@ -105,7 +105,7 @@ int main()
         char * ligne1 = chercherLigneIdLivreur(1 , "dataBase/tableLivreurs.csv" , &err2);        
         TEST(strcmp(ligne1,  "1,Francois Pignon,0600000000,13001;13002;13003,1,20\n" )==0);// voir si on a bien recupérer la ligne qu'on veut       
         char * ligne2 = chercherLigneIdLivreur(3 , "dataBase/tableLivreurs.csv" , &err1);        
-        TEST(strcmp(ligne2,  "3,Mickey Mouse,0611223344,13008;13009;13010;13011,0,0" )==0);// voir si on a bien recupérer la ligne qu'on veut       
+        TEST(strcmp(ligne2,  "3,Mickey Mouse,0611223344,13008;13009;13010;13011,0,0\n" )==0);// voir si on a bien recupérer la ligne qu'on veut       
         TEST( err1 == 0 ); // voir si le fichier s'est ouvert correctement
         TEST( err2 == 0); // voir si le fichier s'est ouvert correctement
 
@@ -244,7 +244,7 @@ int main()
     }
 
     {
-        // modifier modifier solde restaurant
+        // modifier menu restaurant
         TEST(ajouterItem(1, 0) == 1) ;
         TEST(supprimerItem(1, 0) == 1) ;
         TEST(ajouterItem(2, 0) == 1) ;
@@ -254,20 +254,90 @@ int main()
         TEST(ajouterItem(4, 0) == 0) ; // Pour un id restaurant qui n'existe pas
     }
 
+    // TEST pour les fonctions recherche restaurant par code postal
+    {
+        TEST(afficherRestaurantCodePostal(1) == 2) ; // Existance des restaurants qui peuvent livrer
+        TEST(afficherRestaurantCodePostal(2) == 2) ; // Existance des restaurants qui peuvent livrer
+        TEST(afficherRestaurantCodePostal(3) == 1) ; // Aucun restaurant peut livrer
+        TEST(afficherRestaurantCodePostal(4) == 0) ; // idClient inexistant
+    }
+
+    // TEST pour les fonctions recherche restaurant par code postal
+    {
+        TEST(afficherRestaurantType("Provencal") == 2) ; // Existance des restaurants qui peuvent livrer
+        TEST(afficherRestaurantType("Vegetarien") == 2) ; // Existance des restaurants qui peuvent livrer
+        TEST(afficherRestaurantType("Americain") == 2) ; // Existance des restaurants qui peuvent livrer
+        TEST(afficherRestaurantType("FastFood") == 0) ; // Le type de recherche n'existe pas
+    }
+
+    {
+        TEST(afficherRestaurantCodePostalType(1, "Provencal") == 1) ; // Aucun restaurant peut livrer ce client avec ce type
+        TEST(afficherRestaurantCodePostalType(1, "Vegetarien") == 2) ; // Existance des restaurants qui peuvent livrer
+        TEST(afficherRestaurantCodePostalType(1, "Americain") == 1) ; // Aucun restaurant peut livrer ce client avec ce type
+        TEST(afficherRestaurantCodePostalType(1, "FastFood") == 1) ; // Aucun restaurant peut livrer ce client avec ce type
+
+        TEST(afficherRestaurantCodePostalType(2, "Provencal") == 1) ; // Aucun restaurant peut livrer ce client avec ce type
+        TEST(afficherRestaurantCodePostalType(2, "Vegetarien") == 1) ; // Aucun restaurant peut livrer ce client avec ce type
+        TEST(afficherRestaurantCodePostalType(2, "Americain") == 2) ; // Existance des restaurants qui peuvent livrer
+        TEST(afficherRestaurantCodePostalType(2, "FastFood") == 1) ; // Aucun restaurant peut livrer ce client avec ce type
+
+        TEST(afficherRestaurantCodePostalType(3, "Provencal") == 1) ; // Aucun restaurant peut livrer ce client avec ce type
+        TEST(afficherRestaurantCodePostalType(3, "Vegetarien") == 1) ; // Aucun restaurant peut livrer ce client avec ce type
+        TEST(afficherRestaurantCodePostalType(3, "Americain") == 1) ; // Aucun restaurant peut livrer ce client avec ce type
+        TEST(afficherRestaurantCodePostalType(3, "FastFood") == 1) ; // Aucun restaurant peut livrer ce client avec ce type
+
+        TEST(afficherRestaurantCodePostalType(4, "Provencal") == 0) ; // id du client inexistant
+        TEST(afficherRestaurantCodePostalType(4, "Vegetarien") == 0) ; // id du client inexistant
+        TEST(afficherRestaurantCodePostalType(4, "Americain") == 0) ; // id du client inexistant
+        TEST(afficherRestaurantCodePostalType(4, "FastFood") == 0) ; // id du client inexistant
+    }
+
     // TEST Supprimer compte
     {   
         // supprimer restaurant
         TEST(supprimerCompte(1,1) == 1) ;
         TEST(supprimerCompte(2,1) == 1) ;
         TEST(supprimerCompte(3,1) == 1) ;
+        int err_test_1 ;
+        prestaurateur RestaurateurTest_1 = (prestaurateur)malloc(sizeof(restaurateur));
+        RestaurateurTest_1 = ajoutRestaurateurConstructeur( "1", "Chez Michel" , "13001" , "0413131313" , "Provencal" , "1;4;5" , "50" );
+        prestaurateur RestaurateurTest_2 = (prestaurateur)malloc(sizeof(restaurateur));
+        RestaurateurTest_2 = ajoutRestaurateurConstructeur( "2", "Le Veg" , "13005" , "0410111213" , "Vegetarien" , "2;3;4" , "24" );
+        prestaurateur RestaurateurTest_3 = (prestaurateur)malloc(sizeof(restaurateur));
+        RestaurateurTest_3 = ajoutRestaurateurConstructeur( "3", "Joe's International House of Pancakes" , "13010" , "0422334455" , "Americain" , "6;7" , "44" );
+        ajoutRestaurateur(RestaurateurTest_1 , &err_test_1 , "dataBase/tableRestaurants.csv");
+        ajoutRestaurateur(RestaurateurTest_2 , &err_test_1 , "dataBase/tableRestaurants.csv");
+        ajoutRestaurateur(RestaurateurTest_3 , &err_test_1 , "dataBase/tableRestaurants.csv");
+
         // supprimer livreur
         TEST(supprimerCompte(1,2) == 1) ;
         TEST(supprimerCompte(2,2) == 1) ;
         TEST(supprimerCompte(3,2) == 1) ;
+        int err_test_3 ;
+        plivreur livreurTest_1 = (plivreur)malloc(sizeof(livreur));
+        livreurTest_1 = ajoutLivreurConstructeur( "1", "Francois Pignon" , "0600000000" ,"13001;13002;13003", "1" , "20" );
+        ajoutLivreur(livreurTest_1 , &err_test_3 , "dataBase/tableLivreurs.csv");
+        plivreur livreurTest_2 = (plivreur)malloc(sizeof(livreur));
+        livreurTest_2 = ajoutLivreurConstructeur( "2", "Donald Duck" , "0601020304" ,"13001;13004;13005;13006;13009;13010", "0" , "25" );
+        ajoutLivreur(livreurTest_2 , &err_test_3 , "dataBase/tableLivreurs.csv");
+        plivreur livreurTest_3 = (plivreur)malloc(sizeof(livreur));
+        livreurTest_3 = ajoutLivreurConstructeur( "3", "Mickey Mouse" , "0611223344" ,"13008;13009;13010;13011", "0" , "0" );
+        ajoutLivreur(livreurTest_3 , &err_test_3 , "dataBase/tableLivreurs.csv");
+
         // supprimer client
         TEST(supprimerCompte(1,3) == 1) ;
         TEST(supprimerCompte(2,3) == 1) ;
         TEST(supprimerCompte(3,3) == 1) ;
+        int err_test_2 ;
+        pclient clientTest_1 = (pclient)malloc(sizeof(client));
+        clientTest_1 = ajoutClientConstructeur("1" , "13005" , "0410203040" , "0" ,"Francoise Perrin" );
+        pclient clientTest_2 = (pclient)malloc(sizeof(client));
+        clientTest_2 = ajoutClientConstructeur("2" , "13010" , "0690919293" , "50" ,"Daffy Duck" );
+        pclient clientTest_3 = (pclient)malloc(sizeof(client));
+        clientTest_3 = ajoutClientConstructeur("3" , "13008" , "0699887766" , "15" ,"Quentin Tarantino" );
+        ajoutClient(clientTest_1 , &err_test_2 , "dataBase/tableClient.csv");
+        ajoutClient(clientTest_2 , &err_test_2 , "dataBase/tableClient.csv");
+        ajoutClient(clientTest_3 , &err_test_2 , "dataBase/tableClient.csv");
         // type n'existe pas
         TEST(supprimerCompte(1,4) == 0) ;
         TEST(supprimerCompte(2,4) == 0) ;
