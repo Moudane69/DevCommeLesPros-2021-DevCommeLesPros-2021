@@ -255,7 +255,7 @@ int main()
                         scanf("%s", &type);
                         viderBuffer();
                         ajoutRestaurateur(ajoutRestaurateurConstructeur( id , nom , codePostal , telephone , type , menu , "0" ), &l , "dataBase/tableRestaurants.csv");// solde = 0 au début 
-                        ajoutHistorique(id, 1 , "Crée compte") ;
+                        ajoutHistorique(atoi(id), 1 , "Crée compte") ;
                         printf("Vous avez creer un compte pour un restaurateur\n");
                         break;
                     case '2':
@@ -273,7 +273,7 @@ int main()
                         scanf("%s", &restaurant);
                         viderBuffer();
                         ajoutLivreur(ajoutLivreurConstructeur( id , nom  , telephone , deplacements , restaurant , "0" ), &l , "dataBase/tableLivreurs.csv");// solde = 0 au début 
-                        ajoutHistorique(id, 2 , "Crée compte") ;
+                        ajoutHistorique(atoi(id), 2 , "Crée compte") ;
                         printf("Vous avez creer un compte pour un livreur\n");
                         break;
                     case '3':
@@ -292,7 +292,7 @@ int main()
                         viderBuffer();
                      
                         ajoutClient(ajoutClientConstructeur( id  , codePostal, telephone , solde  , nom  ), &l , "dataBase/tableClient.csv");
-                        ajoutHistorique(id, 3 , "Crée compte") ;
+                        ajoutHistorique(atoi(id), 3 , "Crée compte") ;
                         printf("Vous avez creer un compte pour un client\n");
                         break;
                     case 'q':
