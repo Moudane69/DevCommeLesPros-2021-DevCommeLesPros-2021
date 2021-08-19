@@ -68,6 +68,7 @@ int main()
                                         printf("Entrez l'id du item que vous voulez ajouter: \n") ;
                                         scanf("%d", &id_item) ;
                                         ajouterItem(id_type[0], id_item) ;
+                                        ajoutHistorique(id_type[0], id_type[1] , "Ajouter Item") ;
                                         viderBuffer();
                                         printf("Vous avez ajouter un item\n");
                                         break;
@@ -75,6 +76,7 @@ int main()
                                         printf("Entrez l'id du item que vous voulez supprimer (Attention il faut au moins un item qui reste dans votre menu): \n") ;
                                         scanf("%d", &id_item) ;
                                         supprimerItem(id_type[0], id_item) ;
+                                        ajoutHistorique(id_type[0], id_type[1] , "Supprimer Item") ;
                                         viderBuffer();
                                         printf("Vous avez supprimer un item\n");
                                         break;
@@ -82,6 +84,7 @@ int main()
                                 break;
                             case 51:
                                 afficherSoldeRestaurant(id_type[0]) ;
+                                ajoutHistorique(id_type[0], id_type[1] , "Afficher solde") ;
                                 printf("Votre solde\n");
                                 break;
                             case 'q':
@@ -109,6 +112,7 @@ int main()
                                 break;
                             case '3':
                                 afficherSoldeLivreur(id_type[0]) ;
+                                ajoutHistorique(id_type[0], id_type[1] , "Afficher solde") ;
                                 printf("Votre solde\n");
                                 break;
                             case 'q':
@@ -137,6 +141,7 @@ int main()
                             case '3':
                                 printf("Votre solde\n");
                                 afficherSoldeClient(id_type[0]) ;
+                                ajoutHistorique(id_type[0], id_type[1] , "Afficher solde") ;
                                 printf("\n") ;
                                 break;
                             case '4':
@@ -147,12 +152,14 @@ int main()
                                     switch(choix_4){
                                         case '1':
                                             afficherRestaurantCodePostal(id_type[0]) ;
+                                            ajoutHistorique(id_type[0], id_type[1] , "Afficher restaurant par CP") ;
                                             break;
                                         case '2':
                                             printf("Entrer le type qui vous interesse\n") ;
                                             char typeClient_1[20] ;
                                             scanf("%s" , typeClient_1) ;
                                             afficherRestaurantType(typeClient_1) ;
+                                            ajoutHistorique(id_type[0], id_type[1] , "Afficher restaurant par type") ;
                                             viderBuffer();
                                             break;
                                         case '3':
@@ -160,6 +167,7 @@ int main()
                                             char typeClient_2[20] ;
                                             scanf("%s" , typeClient_2) ;
                                             afficherRestaurantCodePostalType(id_type[0], typeClient_2) ;
+                                            ajoutHistorique(id_type[0], id_type[1] , "Afficher restaurant par combinaisant") ;
                                             viderBuffer();
                                             break;
                                         case 'q':
@@ -213,7 +221,6 @@ int main()
         /* Pour créer un compte */
         /************************/
             do{
-                // To Delete
                 printf("[1].Pour restaurateur \n[2].Pour livreur \n[3].Pour client \n[q].Pour quitter \n[p].Pour precedent\n");
                 scanf("%c", &choix_2);
                 viderBuffer();
@@ -248,6 +255,7 @@ int main()
                         scanf("%s", &type);
                         viderBuffer();
                         ajoutRestaurateur(ajoutRestaurateurConstructeur( id , nom , codePostal , telephone , type , menu , "0" ), &l , "dataBase/tableRestaurants.csv");// solde = 0 au début 
+                        ajoutHistorique(atoi(id), 1 , "Crée compte") ;
                         printf("Vous avez creer un compte pour un restaurateur\n");
                         break;
                     case '2':
@@ -265,6 +273,7 @@ int main()
                         scanf("%s", &restaurant);
                         viderBuffer();
                         ajoutLivreur(ajoutLivreurConstructeur( id , nom  , telephone , deplacements , restaurant , "0" ), &l , "dataBase/tableLivreurs.csv");// solde = 0 au début 
+                        ajoutHistorique(atoi(id), 2 , "Crée compte") ;
                         printf("Vous avez creer un compte pour un livreur\n");
                         break;
                     case '3':
@@ -283,7 +292,7 @@ int main()
                         viderBuffer();
                      
                         ajoutClient(ajoutClientConstructeur( id  , codePostal, telephone , solde  , nom  ), &l , "dataBase/tableClient.csv");
-
+                        ajoutHistorique(atoi(id), 3 , "Crée compte") ;
                         printf("Vous avez creer un compte pour un client\n");
                         break;
                     case 'q':
