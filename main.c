@@ -230,8 +230,8 @@ int main()
                         char restaurant[30];
                 switch(choix_2){
                     case '1':
-                        // itoa(nombreDeLigne("dataBase/tableRestaurants.csv"),id,10);
-                        sprintf(id , "%d" , nombreDeLigne("dataBase/tableRestaurants.csv"));
+                        // itoa(generateId("dataBase/tableRestaurants.csv"),id,10);
+                        sprintf(id , "%d" ,generateId("dataBase/tableRestaurants.csv"));
                         printf("rentrer votre nom :\n");
                         scanf("%s", &nom);
                         viderBuffer();
@@ -251,7 +251,7 @@ int main()
                         printf("Vous avez creer un compte pour un restaurateur\n");
                         break;
                     case '2':
-                        sprintf(id , "%d" , nombreDeLigne("dataBase/tableLivreurs.csv"));
+                        sprintf(id , "%d" , generateId("dataBase/tableLivreurs.csv"));
                         printf("rentrer votre nom :\n");
                         scanf("%s", &nom);
                         viderBuffer();
@@ -268,7 +268,7 @@ int main()
                         printf("Vous avez creer un compte pour un livreur\n");
                         break;
                     case '3':
-                        sprintf(id , "%d" , nombreDeLigne("dataBase/tableClient.csv"));
+                        sprintf(id , "%d" , generateId("dataBase/tableClient.csv"));
                         printf("rentrer votre nom :\n");
                         scanf("%s", &nom);
                         viderBuffer();
